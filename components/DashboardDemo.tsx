@@ -47,7 +47,7 @@ const HOURS_PATIENT_MGMT = [
   { name: '7 PM', present: 80, absent: 20 },
 ];
 
-// 3. In House: 10 AM - 6 PM
+// 3. In House: 10 AM - 6 PM (Also default for All)
 const HOURS_IN_HOUSE = [
   { name: '10 AM', present: 98, absent: 2 },
   { name: '11 AM', present: 99, absent: 1 },
@@ -60,13 +60,13 @@ const HOURS_IN_HOUSE = [
   { name: '6 PM', present: 90, absent: 10 },
 ];
 
-// 4. Part Time (Generic shift for demo)
+// 4. Part Time (Evening Shift: 4 PM - 8 PM)
 const HOURS_PART_TIME = [
-  { name: '10 AM', present: 60, absent: 40 },
-  { name: '11 AM', present: 70, absent: 30 },
-  { name: '12 PM', present: 75, absent: 25 },
-  { name: '1 PM', present: 50, absent: 50 },
-  { name: '2 PM', present: 70, absent: 30 },
+  { name: '4 PM', present: 75, absent: 25 },
+  { name: '5 PM', present: 80, absent: 20 },
+  { name: '6 PM', present: 85, absent: 15 },
+  { name: '7 PM', present: 82, absent: 18 },
+  { name: '8 PM', present: 70, absent: 30 },
 ];
 
 // Weekly: Sat - Thursday (Friday Holiday)
@@ -137,7 +137,9 @@ const DataEntryModal = ({
   // Update local state when props change (e.g. switching daily shift views)
   useEffect(() => {
     setLocalAttendance([...attendanceData]);
-  }, [attendanceData]);
+    setLocalDept([...deptData]);
+    setLocalRecruitment([...recruitmentData]);
+  }, [attendanceData, deptData, recruitmentData]);
 
   const handleAttendanceChange = (index: number, val: string) => {
     const present = Math.min(100, Math.max(0, Number(val)));
@@ -374,12 +376,13 @@ export const DashboardDemo: React.FC = () => {
 
     // DAILY VIEW LOGIC
     if (timeRange === 'Daily') {
-      let dailyData = HOURS_FIELD_SALES; // Default to longest range
+      let dailyData = HOURS_IN_HOUSE; // Default to standard hours if All
       
       if (department === 'Field Sales') dailyData = HOURS_FIELD_SALES;
       else if (department === 'Patient Mgmt') dailyData = HOURS_PATIENT_MGMT;
       else if (department === 'In-House') dailyData = HOURS_IN_HOUSE;
       else if (department === 'Part-Time') dailyData = HOURS_PART_TIME;
+      else if (department === 'All') dailyData = HOURS_IN_HOUSE; // Default fallback
       
       setAttendanceData(dailyData);
       // For demo, we keep recruitment/violations static in daily view or could create specific sets
@@ -408,7 +411,7 @@ export const DashboardDemo: React.FC = () => {
 
   // Dynamic Calculation of Average Attendance
   const averageAttendance = useMemo(() => {
-    if (attendanceData.length === 0) return 0;
+    if (!attendanceData || attendanceData.length === 0) return 0;
     const total = attendanceData.reduce((acc, curr) => acc + curr.present, 0);
     return Math.round(total / attendanceData.length);
   }, [attendanceData]);
@@ -595,7 +598,7 @@ export const DashboardDemo: React.FC = () => {
                   </linearGradient>
                 </defs>
                 <CartesianGrid strokeDasharray="3 3" stroke="#e2e8f0" vertical={false} />
-                <XAxis dataKey="name" stroke="#64748b" interval={0} fontSize={12} tick={{dy: 10}} />
+                <XAxis dataKey="name" stroke="#64748b" interval="preserveStartEnd" fontSize={12} tick={{dy: 10}} />
                 <YAxis stroke="#64748b" domain={[0, 100]} />
                 <Tooltip 
                   contentStyle={{ backgroundColor: '#1e293b', border: 'none', borderRadius: '8px', color: '#fff' }}
