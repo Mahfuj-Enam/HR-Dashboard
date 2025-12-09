@@ -5,7 +5,7 @@ import {
 } from 'recharts';
 import { 
   Users, UserPlus, Clock, AlertTriangle, Sparkles, Filter, Download, 
-  HelpCircle, BookOpen, X, Edit, Save, Calendar
+  CircleHelp, BookOpen, X, Pencil, Save, Calendar
 } from 'lucide-react';
 import { generateHRInsights } from '../services/geminiService';
 
@@ -176,7 +176,7 @@ const DataEntryModal = ({
 
         <div className="flex items-center gap-3 mb-6 border-b border-slate-100 dark:border-slate-700 pb-4">
           <div className="bg-blue-100 dark:bg-blue-900/30 p-2 rounded-lg">
-            <Edit className="text-blue-600 dark:text-blue-400" size={24} />
+            <Pencil className="text-blue-600 dark:text-blue-400" size={24} />
           </div>
           <div>
             <h2 className="text-xl font-bold text-slate-900 dark:text-white">Input {timeRange} Data</h2>
@@ -499,7 +499,7 @@ export const DashboardDemo: React.FC = () => {
             className="flex items-center gap-2 bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 hover:bg-slate-50 dark:hover:bg-slate-700 px-4 py-2 rounded-lg text-sm font-medium transition-colors text-slate-700 dark:text-slate-200"
             title={`Input ${timeRange} Data`}
           >
-            <Edit size={16} /> <span className="hidden sm:inline">Input Data</span>
+            <Pencil size={16} /> <span className="hidden sm:inline">Input Data</span>
           </button>
           
           <button 
@@ -507,7 +507,7 @@ export const DashboardDemo: React.FC = () => {
             className="flex items-center gap-2 bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 hover:bg-slate-50 dark:hover:bg-slate-700 px-4 py-2 rounded-lg text-sm font-medium transition-colors text-slate-700 dark:text-slate-200"
             title="Open User Manual"
           >
-            <HelpCircle size={16} /> <span className="hidden sm:inline">Guide</span>
+            <CircleHelp size={16} /> <span className="hidden sm:inline">Guide</span>
           </button>
           
           <button 
