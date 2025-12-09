@@ -4,6 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Smart HR Dashboard - Automated Insights</title>
+    <!-- Kept Tailwind CDN for simplicity. In a production Vite app, you might install it via npm. -->
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <style>
@@ -27,17 +28,20 @@
 {
   "imports": {
     "lucide-react": "https://aistudiocdn.com/lucide-react@^0.556.0",
+    "framer-motion": "https://aistudiocdn.com/framer-motion@^12.23.25",
+    "vite": "https://aistudiocdn.com/vite@^7.2.7",
     "react-dom/": "https://aistudiocdn.com/react-dom@^19.2.1/",
-    "recharts": "https://aistudiocdn.com/recharts@^3.5.1",
+    "@vitejs/plugin-react": "https://aistudiocdn.com/@vitejs/plugin-react@^5.1.2",
     "@google/genai": "https://aistudiocdn.com/@google/genai@^1.32.0",
     "react/": "https://aistudiocdn.com/react@^19.2.1/",
     "react": "https://aistudiocdn.com/react@^19.2.1",
-    "framer-motion": "https://aistudiocdn.com/framer-motion@^12.23.25"
+    "recharts": "https://aistudiocdn.com/recharts@^3.5.1"
   }
 }
 </script>
 </head>
   <body class="bg-slate-50 text-slate-900 dark:bg-slate-900 dark:text-slate-100 transition-colors duration-300">
     <div id="root"></div>
+    <script type="module" src="/index.tsx"></script>
   </body>
 </html>
