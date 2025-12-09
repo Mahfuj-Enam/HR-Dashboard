@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Hero, Features, RecruitmentSection, Pricing, Contact } from './components/MarketingPages';
 import { DashboardDemo } from './components/DashboardDemo';
 import { Page, NavItem } from './types';
-import { Menu, X, Moon, Sun, LayoutDashboard } from 'lucide-react';
+import { Menu, X, Moon, Sun, LayoutTemplate } from 'lucide-react';
 
 const navItems: NavItem[] = [
   { label: 'Home', page: Page.HOME },
@@ -71,7 +71,7 @@ const App: React.FC = () => {
             onClick={() => setCurrentPage(Page.HOME)}
           >
             <div className="bg-blue-600 p-2 rounded-lg">
-              <LayoutDashboard className="text-white" size={24} />
+              <LayoutTemplate className="text-white" size={24} />
             </div>
             <span className="text-xl font-bold text-slate-800 dark:text-white hidden sm:block">SmartHR</span>
           </div>
@@ -172,7 +172,7 @@ const App: React.FC = () => {
             <div className="flex flex-col md:flex-row justify-between items-center gap-6">
               <div className="flex items-center gap-2">
                  <div className="bg-blue-600 p-2 rounded-lg">
-                    <LayoutDashboard className="text-white" size={20} />
+                    <LayoutTemplate className="text-white" size={20} />
                  </div>
                  <span className="text-xl font-bold text-white">SmartHR</span>
               </div>

@@ -1,15 +1,13 @@
 import React, { useState, useMemo, useEffect } from 'react';
 import { 
-  BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer, 
-  LineChart, Line, PieChart, Pie, Cell, AreaChart, Area 
+  BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, 
+  AreaChart, Area, Cell 
 } from 'recharts';
 import { 
-  Users, UserPlus, Clock, TriangleAlert, Sparkles, Filter, Download, 
-  CircleHelp, BookOpen, X, Pencil, Save, Calendar
+  Users, UserPlus, Clock, TriangleAlert, Sparkles, Download, 
+  CircleHelp, BookOpen, X, Pencil, Save
 } from 'lucide-react';
 import { generateHRInsights } from '../services/geminiService';
-
-const COLORS = ['#3b82f6', '#10b981', '#f59e0b', '#ef4444'];
 
 type TimeRange = 'Daily' | 'Weekly' | 'Monthly';
 type DepartmentType = 'All' | 'Field Sales' | 'Patient Mgmt' | 'In-House' | 'Part-Time';
@@ -142,7 +140,10 @@ const DataEntryModal = ({
   }, [attendanceData, deptData, recruitmentData]);
 
   const handleAttendanceChange = (index: number, val: string) => {
-    const present = Math.min(100, Math.max(0, Number(val)));
+    let num = Number(val);
+    if (isNaN(num)) num = 0;
+    const present = Math.min(100, Math.max(0, num));
+    
     const newData = [...localAttendance];
     newData[index] = { 
       ...newData[index], 
@@ -153,14 +154,21 @@ const DataEntryModal = ({
   };
 
   const handleDeptChange = (index: number, val: string) => {
+    let num = Number(val);
+    if (isNaN(num)) num = 0;
+    const score = Math.min(100, Math.max(0, num));
+
     const newData = [...localDept];
-    newData[index] = { ...newData[index], score: Number(val) };
+    newData[index] = { ...newData[index], score };
     setLocalDept(newData);
   };
 
   const handleRecruitmentChange = (index: number, val: string) => {
+    let num = Number(val);
+    if (isNaN(num)) num = 0;
+
     const newData = [...localRecruitment];
-    newData[index] = { ...newData[index], value: Number(val) };
+    newData[index] = { ...newData[index], value: num };
     setLocalRecruitment(newData);
   };
 
