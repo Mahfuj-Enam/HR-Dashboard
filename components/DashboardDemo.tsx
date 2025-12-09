@@ -4,7 +4,7 @@ import {
   LineChart, Line, PieChart, Pie, Cell, AreaChart, Area 
 } from 'recharts';
 import { 
-  Users, UserPlus, Clock, AlertTriangle, Sparkles, Filter, Download, 
+  Users, UserPlus, Clock, TriangleAlert, Sparkles, Filter, Download, 
   CircleHelp, BookOpen, X, Pencil, Save, Calendar
 } from 'lucide-react';
 import { generateHRInsights } from '../services/geminiService';
@@ -556,7 +556,7 @@ export const DashboardDemo: React.FC = () => {
             title: 'Policy Violations', 
             value: violationCount.toString(), 
             change: violationCount > 5 ? '+2' : '-1', 
-            icon: AlertTriangle, 
+            icon: TriangleAlert, 
             color: 'red' 
           },
         ].map((kpi, idx) => (

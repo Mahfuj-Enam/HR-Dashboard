@@ -1,8 +1,8 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { 
-  CheckCircle, ArrowRight, TrendingUp, ShieldCheck, 
-  PieChart, Layout, Layers, UserCheck, Calendar 
+  CircleCheck, ArrowRight, TrendingUp, ShieldCheck, 
+  ChartPie, LayoutTemplate, Layers, UserCheck, Calendar 
 } from 'lucide-react';
 import { Page } from '../types';
 
@@ -89,10 +89,10 @@ export const Hero: React.FC<SectionProps> = ({ onNavigate }) => {
 
 export const Features: React.FC = () => {
   const features = [
-    { icon: Layout, title: "Daily Data Input", desc: "Automated source layer that streamlines daily entries." },
+    { icon: LayoutTemplate, title: "Daily Data Input", desc: "Automated source layer that streamlines daily entries." },
     { icon: ShieldCheck, title: "KPI Scorecards", desc: "Dynamic traffic light indicators for immediate status checks." },
     { icon: Layers, title: "Pivot Engine", desc: "Automated summaries and trend outputs without manual formula work." },
-    { icon: PieChart, title: "Drill-Down Analytics", desc: "Interactive slicers to filter by date, department, or officer." },
+    { icon: ChartPie, title: "Drill-Down Analytics", desc: "Interactive slicers to filter by date, department, or officer." },
   ];
 
   return (
@@ -144,7 +144,7 @@ export const RecruitmentSection: React.FC = () => {
                 "Time-to-Hire Trend Analysis"
               ].map((item, i) => (
                 <li key={i} className="flex items-center gap-3 text-slate-700 dark:text-slate-300">
-                  <CheckCircle size={20} className="text-emerald-500" />
+                  <CircleCheck size={20} className="text-emerald-500" />
                   {item}
                 </li>
               ))}
@@ -209,7 +209,7 @@ export const Pricing: React.FC = () => {
                 <ul className="space-y-4 mb-8">
                   {plan.features.map((f, j) => (
                     <li key={j} className="flex items-center gap-3 text-sm text-slate-600 dark:text-slate-400">
-                      <CheckCircle size={16} className="text-blue-500" /> {f}
+                      <CircleCheck size={16} className="text-blue-500" /> {f}
                     </li>
                   ))}
                 </ul>
