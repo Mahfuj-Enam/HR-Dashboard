@@ -13,11 +13,14 @@ export default defineConfig(({ mode }) => {
       'process.env.API_KEY': JSON.stringify(env.API_KEY)
     },
     build: {
-      chunkSizeWarningLimit: 1000,
+      chunkSizeWarningLimit: 1600,
       rollupOptions: {
         output: {
           manualChunks: {
-            vendor: ['react', 'react-dom', 'framer-motion', 'recharts', 'lucide-react', '@google/genai']
+            'react-vendor': ['react', 'react-dom', 'framer-motion'],
+            'charts-vendor': ['recharts'],
+            'icons-vendor': ['lucide-react'],
+            'ai-vendor': ['@google/genai']
           }
         }
       }
